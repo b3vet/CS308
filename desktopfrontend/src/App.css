@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+  width: 100%;
+}
+@media(max-width: 750px) {
+  .header {
+    padding: 10px;
+    background: #17a2da;
+    border-bottom: 1px solid #999;
+  }
+}

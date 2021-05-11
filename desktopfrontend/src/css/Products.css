@@ -1,0 +1,11 @@
+table {
+    font-family: arial, sans-serif;
+  }
+  
+  td, th {
+    border: 1px solid #133676;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  
