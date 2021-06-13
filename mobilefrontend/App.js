@@ -50,7 +50,7 @@ const Stack = createStackNavigator();
           <Stack.Screen name ="Landing" component={LandingScreen} navigation ={this.props.navigation} options={{headerShown: false}} />
           <Stack.Screen name ="Register" component={RegisterScreen} navigation={this.props.navigation} options={{headerShown: false}}/>
           <Stack.Screen name ="Login" component={LoginScreen} navigation ={this.props.navigation} options={{headerShown: false}}/>
-          <Stack.Screen name ="Main" component={MainScreen} options={{headerShown: false}} />
+          <Stack.Screen name ="Main" component={MainScreen} navigation={this.props.navigation} options={{headerShown: false}} />
           </Stack.Navigator>
           </NavigationContainer>
           </GlobalState>

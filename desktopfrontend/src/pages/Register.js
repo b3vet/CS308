@@ -50,8 +50,8 @@ function Register(props) {
   }
  
   return (
-    <div>
-      Register<br /><br />
+    <div class="Login-Container">
+    <div class="Login-Float">
       <div>
         Username<br />
         <input type="text" {...username} autoComplete="new-password" required/>
@@ -82,7 +82,9 @@ function Register(props) {
       </div>
       {error && <><small style={{ color: 'red' }}>{error==226 ? "This username already exists!\n" : ""}</small></>}
       {error && <><small style={{ color: 'red' }}>{error!=226 && error.error ? error.error : ""}</small><br /></>}<br />
-      <input type="button" value={loading ? 'Loading...' : 'Register'} onClick={handleRegister} disabled={loading} /><br />
+      <input class = "Login-Button" type="button" value={loading ? 'Loading...' : 'Register'} onClick={handleRegister} disabled={loading} /><br />
+      
+      </div>
     </div>
   );
 }

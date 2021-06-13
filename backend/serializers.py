@@ -1,7 +1,5 @@
 from rest_framework import serializers
-from .models import Users
-from .models import Products
-from .models import Comments
+from .models import *
 
 class UsersSerializer(serializers.ModelSerializer):
     class Meta:
@@ -49,3 +47,35 @@ class CommentsSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance"""
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = '__all__'
+
+    def create(self, validated_data):
+        return Cart.objects.create(**validated_data)
+
+class OrderHasProductsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderHasProducts
+        fields = '__all__'
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+class InvoiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Invoice
+        fields = '__all__'
+
+class DiscountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Discount
+        fields = '__all__'
+class RefundSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RefundRequest
+        fields = '__all__'

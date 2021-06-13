@@ -8,8 +8,8 @@ export default class GlobalState extends React.Component{
     }
     
     addUser = (user) => {
-        const list = [user];
-        this.setState({user: list});
+        
+        this.setState({user: user});
     };
     
     addTokens = (refresh,access) => {
@@ -24,7 +24,7 @@ export default class GlobalState extends React.Component{
         }
     }
     removeUser = () => {
-        this.setState({user : []});
+        this.setState({user : null});
         this.removeValue();
 
     };

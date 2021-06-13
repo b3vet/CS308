@@ -52,9 +52,6 @@ export class Login extends Component {
             error => {
               console.log("error in axios")
               this.setState({loading: false})
-              /*
-              if (error.response.status === 401) this.setState({error: error.response.data.message}); 
-              else this.setState({error: "Something went wrong. Please try again later."}); */
               this.setState({error: "Something went wrong. Please try again later."});
             }
           )

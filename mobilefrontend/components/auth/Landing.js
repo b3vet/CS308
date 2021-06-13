@@ -1,7 +1,9 @@
 import React from 'react'
 import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Context from '../../context/Context';
 export class Landing extends React.Component{
+  static contextType = Context;
     constructor(props) {
         super(props);
         this.state = {
@@ -27,7 +29,8 @@ export class Landing extends React.Component{
     async componentDidMount() {
           const data = await this.getData()
           if (data != 'not stored') {
-            this.props.navigation.navigate("Main")
+            this.context.addUser(JSON.parse(data));
+            this.props.navigation.navigate("Main");
           }
 
       }

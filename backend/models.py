@@ -14,7 +14,7 @@ class Users(models.Model):
     email = models.CharField(max_length=50)
     phoneNumber = models.CharField(max_length=100)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    
+
     class Meta:
         db_table = "user"
 
@@ -43,7 +43,7 @@ class Discount(models.Model):
     ratio = models.IntegerField()
     class Meta:
         db_table = "discount"
-        
+
 class Products(models.Model):
     pid = models.AutoField(primary_key = True)
     name = models.CharField(max_length=100)
@@ -55,7 +55,7 @@ class Products(models.Model):
     price = models.IntegerField()
     description = models.TextField()
     caid = models.ForeignKey(Category, default = 9, on_delete = models.CASCADE, db_column = 'category')
-    did = models.OneToOneField(Discount, default = None, on_delete=models.CASCADE,  db_column = 'discount', blank=True, null=True)
+    did = models.ForeignKey(Discount, default = None, on_delete=models.SET_NULL,  db_column = 'discount', blank=True, null=True)
     totalRating = models.IntegerField(default = 0)
     ratingCount = models.IntegerField(default = 0)
     image = models.FileField(default = None, blank=True, null=True)
@@ -74,10 +74,10 @@ class Cart(models.Model):
 
 class Order(models.Model):
     oid = models.AutoField(primary_key = True)
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=timezone.now, blank=True, null=False)
     deliveryAddress = models.TextField()
     uid = models.ForeignKey(Users, default = 1, on_delete = models.CASCADE, db_column = 'users')
-    
+
     class Meta:
         db_table = "order"
 
@@ -86,7 +86,8 @@ STATUS_CHOICES = [
 ('IN-TRANSIT','In-transit'),
 ('DELIVERED','Delivered'),
 ('CANCELED','Canceled'),
-('RETURNED','Returned')
+('RETURNED','Returned'),
+('IN-REVIEW', "In-review")
 ]
 
 class OrderHasProducts(models.Model):
@@ -94,9 +95,10 @@ class OrderHasProducts(models.Model):
     status = models.CharField(max_length=200, choices=STATUS_CHOICES, default='PROCESSING')
     pid = models.ForeignKey(Products, default = 1, on_delete = models.CASCADE, db_column = 'products')
     oid = models.ForeignKey(Order, default = 1, on_delete = models.CASCADE, db_column = 'order')
+    orderedPrice = models.IntegerField(default = 0)
 
     class Meta:
-        db_table = "orderhasproducts"    
+        db_table = "orderhasproducts"
 
 class RefundRequest(models.Model):
     rid = models.AutoField(primary_key = True)
@@ -114,9 +116,9 @@ class Invoice(models.Model):
     address= models.TextField()
     date = models.DateTimeField(default=timezone.now)
     isActive = models.BooleanField()
+    pdf = models.FileField(default=None, blank=True, null=True, upload_to="invoices")
     uid = models.ForeignKey(Users, default=1, on_delete=models.CASCADE,  db_column = 'users')
-    oid = models.OneToOneField(Order, default=1, on_delete=models.CASCADE,  db_column = 'order')
-
+    oid = models.OneToOneField(Order, default=1, on_delete=models.SET_NULL,  db_column = 'order', null=True)
     class Meta:
         db_table = "invoice"
 

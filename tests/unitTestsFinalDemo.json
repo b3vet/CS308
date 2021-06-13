@@ -1,0 +1,3058 @@
+{
+	"info": {
+		"_postman_id": "42b5542a-cdb1-4d19-8e0e-709ee8c095e6",
+		"name": "testCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Successful login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"pm.test(\"Successful login\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"Correct user is sent back\", function () {  ",
+							"   pm.expect(json.user.email).to.equal(\"berkeucvet@gmail.com\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login Get Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bad Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"pm.test(\"bad login\", function () {",
+							"    pm.response.to.have.status(406);",
+							"    console.log(\"This means that the username or password is wrong.\")",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uname",
+							"value": "yokboyle",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "biruser",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Register Get Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Successful Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"pm.test(\"Successful register\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"Correct user is sent back\", function () {  ",
+							"   pm.expect(json.user.email).to.equal(\"denemeUser@g.com\");",
+							"});",
+							"console.log(\"This test needs clearing the new added user after the test from 2 tables in database\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uname",
+							"value": "denemeUser1234343",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "denemeUser@g.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Denemeyim",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Ben",
+							"type": "text"
+						},
+						{
+							"key": "taxID",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "phoneNumber",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Already existing user register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"pm.test(\"Already registered user\", function () {",
+							"    pm.response.to.have.status(226);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "denemeUser@g.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Denemeyim",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Ben",
+							"type": "text"
+						},
+						{
+							"key": "taxID",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "phoneNumber",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register with faulty data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"pm.test(\"BAD REGISTER REQUEST\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uname",
+							"value": "b3vettttttttt",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "denemeUserrrr@g.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Denemeyim",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Ben",
+							"type": "text"
+						},
+						{
+							"key": "taxID",
+							"value": "1234",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phoneNumber",
+							"value": "1234",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products By Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('products');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "caid",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/productsbycategory/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"productsbycategory",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get HomePage Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('engagement');",
+							"  pm.expect(json).to.have.property('wedding');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/home/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"home",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Comments for Specific Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('comments');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pid",
+							"value": "41",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/commentandrating/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"commentandrating",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Comments for Not-Existing Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"pm.test(\"bad comment\", function () {",
+							"    pm.response.to.have.status(404);",
+							"    console.log(\"This means that the comment is not available.\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pid",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/commentandrating/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"commentandrating",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('products');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Successful remove\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('success');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pid",
+							"value": "58",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Successful add\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('success');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "DenemeUrunu10",
+							"type": "text"
+						},
+						{
+							"key": "material",
+							"value": "14K GOLD",
+							"type": "text"
+						},
+						{
+							"key": "productionCost",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "color",
+							"value": "SILVER",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "warranty",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "200",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "HMM very nice.",
+							"type": "text"
+						},
+						{
+							"key": "caid",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "totalRating",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "did",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "caid",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product With Faulty Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Bad add\", function () {",
+							"    pm.response.to.have.status(226);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "DenemeUrunu",
+							"type": "text"
+						},
+						{
+							"key": "material",
+							"value": "14K GOLD",
+							"type": "text"
+						},
+						{
+							"key": "productionCost",
+							"value": "hundred",
+							"type": "text"
+						},
+						{
+							"key": "color",
+							"value": "SILVER",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "warranty",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "200",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "HMM very nice.",
+							"type": "text"
+						},
+						{
+							"key": "caid",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "avgRating",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/berkeucvet/Desktop/DenemeUrunu.jpeg"
+						},
+						{
+							"key": "did",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Already Existing Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Successful could not add\", function () {",
+							"    pm.response.to.have.status(226);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "DenemeUrunu",
+							"type": "text"
+						},
+						{
+							"key": "material",
+							"value": "14K GOLD",
+							"type": "text"
+						},
+						{
+							"key": "productionCost",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "color",
+							"value": "SILVER",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "warranty",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "200",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "HMM very nice.",
+							"type": "text"
+						},
+						{
+							"key": "caid",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/berkeucvet/Desktop/DenemeUrunu.jpeg"
+						},
+						{
+							"key": "did",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Successful update\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('success');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "DenemeUrunu6",
+							"type": "text"
+						},
+						{
+							"key": "material",
+							"value": "10K GOLD",
+							"type": "text"
+						},
+						{
+							"key": "productionCost",
+							"value": "150",
+							"type": "text"
+						},
+						{
+							"key": "color",
+							"value": "SILVER",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "warranty",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "200",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "HMM very nice.",
+							"type": "text"
+						},
+						{
+							"key": "caid",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "avgRating",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/berkeucvet/Desktop/DenemeUrunu.jpeg"
+						},
+						{
+							"key": "did",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pid",
+							"value": "36",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Product That Doesn't Exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"did not allow us to add a product with the same name\", function () {  ",
+							"   pm.expect(json.error).to.equal(\"No Products matches the given query.\");",
+							"   pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "DenemeUrunu",
+							"type": "text"
+						},
+						{
+							"key": "material",
+							"value": "10K GOLD",
+							"type": "text"
+						},
+						{
+							"key": "productionCost",
+							"value": "150",
+							"type": "text"
+						},
+						{
+							"key": "color",
+							"value": "SILVER",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "warranty",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "200",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "HMM very nice.",
+							"type": "text"
+						},
+						{
+							"key": "pid",
+							"value": "2626262",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Product With Faulty Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"did not specify the pid\", function () {  ",
+							"   pm.expect(json.error).to.equal(\"'pid'\");",
+							"   pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Not-existing Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"pm.test(\"bad remove\", function () {",
+							"    pm.response.to.have.status(400);",
+							"    console.log(\"This means that the product is not available.\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pid",
+							"value": "-5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "uname",
+							"value": "b3vet",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add comment success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Successful add\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('success');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pid\": 32,\n    \"comment\": {\n        \"approved\": false,\n        \"comment\": \"another comment being tried\",\n        \"uid\": 4,\n        \"pid\": 32,\n        \"rating\": 2\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/addcommentandrating/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"addcommentandrating",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add comment Faulty Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Successful fail\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pid\": 19,\n    \"comment\": {\n        \"approved\": false,\n        \"comment\": \"I LIKED THIS PRODUCT SO MUCH\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/addcommentandrating/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"addcommentandrating",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('product');\r",
+							"  pm.expect(json).to.have.property('comments');\r",
+							"  pm.expect(json).to.have.property('avgRating');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pid",
+							"value": "40",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/singleproduct/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"singleproduct",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Rating for Specific Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('avgRating');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pid",
+							"value": "33",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/commentandrating/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"commentandrating",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Rating",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successful add\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('success');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pid\": 35,\r\n    \"comment\": {\r\n        \"approved\": 1,\r\n        \"comment\": \"Nice product\",\r\n        \"uid\": 1,\r\n        \"pid\": 35,\r\n        \"rating\": 3\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/addcommentandrating/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"addcommentandrating",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Comment with Proper Comment ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Successful approve\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('success');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "coid",
+							"value": "18",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/approvecomment/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"approvecomment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCartView",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully found\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('products');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uid",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cart/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cart",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddtoCart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successful add\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('success');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cart\": {\r\n        \"quantity\": 1,\r\n        \"uid\": 1,\r\n        \"pid\": 35\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/addtocart/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"addtocart",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Successful search\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('results');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "query",
+							"value": "Mil",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/search/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"search",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Order Succes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successful add\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('sucess');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uid\":1,\n    \"address\": \"sabanj\",\n    \"products\": [{\"pid\":33}, {\"pid\": 34}],\n    \"afterLogin\":1,\n    \"name\":\"Ceyda\",\n    \"surname\":\"Omur\",\n    \"invoiceAddress\": \"Sabanj\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/order/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoice to PDF",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successfully created invoice PDF\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "iid",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/invoice/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"invoice",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User's Orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Successfully found\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uid",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/usersorders/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"usersorders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Invoices",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully found\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('invoices');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/allinvoices/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"allinvoices",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Discount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully added\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('sucess');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"products\": [35,36],\r\n    \"startDateTime\": \"2021-06-26 00:14\",\r\n    \"endDateTime\": \"2021-06-30 00:14\",\r\n    \"ratio\": 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/adddiscount/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"adddiscount",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Info Of Single Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully found\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "oid",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/getanorder/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"getanorder",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Discounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully found\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('discounts');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/getdiscounts/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"getdiscounts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Refund Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successful add\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('sucess');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pid",
+							"value": "33",
+							"type": "text"
+						},
+						{
+							"key": "oid",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "reason",
+							"value": "Not like in the image",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/refundrequest/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"refundrequest",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Invoice in a given time",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully found\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('invoices');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "startDateTime",
+							"value": "2003-06-26 00:14",
+							"type": "text"
+						},
+						{
+							"key": "endDateTime",
+							"value": "2021-06-26 00:14",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/getinvoiceinrange/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"getinvoiceinrange",
+						""
+					],
+					"query": [
+						{
+							"key": "startDateTime",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "endDateTime",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calculate Revenue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully calculated\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('gain');\r",
+							"  pm.expect(json).to.have.property('loss');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "startDateTime",
+							"value": "2003-06-26 00:14",
+							"type": "text"
+						},
+						{
+							"key": "endDateTime",
+							"value": "2021-06-26 00:14",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/wowimrich/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wowimrich",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Products To Discount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully added\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('sucess');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"did\": 3,\r\n    \"products\": [35,36],\r\n    \"startDateTime\": \"2021-06-26 00:14\",\r\n    \"endDateTime\": \"2021-06-30 00:14\",\r\n    \"ratio\": 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/addproductstodiscount/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"addproductstodiscount",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Discount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"//var req = JSON.parse(request.body);",
+							"pm.test(\"Successfully found\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test('Has data', function() {",
+							"  pm.expect(json).to.have.property('selectedproducts');",
+							"  pm.expect(json).to.have.property('discount');",
+							"  pm.expect(json).to.have.property('allproducts');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "did",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/getadiscount/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"getadiscount",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Refund Requests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully found\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('refunds');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/allrefunds/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"allrefunds",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully found\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/allorders/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"allorders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pending Comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully found\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('comments');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/getpendingcomments/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"getpendingcomments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Product In Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successful update\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('sucess');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pid",
+							"value": "36",
+							"type": "text"
+						},
+						{
+							"key": "uid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "oid",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cancelproductinorder/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cancelproductinorder",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change User Info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successful update\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('success');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uid",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Ceyda",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Omur",
+							"type": "text"
+						},
+						{
+							"key": "taxID",
+							"value": "13242",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "5370520896",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "cy@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "122423",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/changeuserinfo/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"changeuserinfo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Comment Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successful update\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('success');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "coid",
+							"value": "26",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "Approved",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/changecommentstatus/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"changecommentstatus",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Order Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successful update\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('success');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ohid",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "DELIVERED",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/changeohpstatus/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"changeohpstatus",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decline Refund Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successful decline\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('sucess');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ohid",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/declinerefund/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"declinerefund",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Refund Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"//var req = JSON.parse(request.body);\r",
+							"pm.test(\"Successfully approved\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('Has data', function() {\r",
+							"  pm.expect(json).to.have.property('sucess');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ohid",
+							"value": "8",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/approverefund/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"approverefund",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

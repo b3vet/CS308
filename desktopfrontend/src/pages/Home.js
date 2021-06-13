@@ -80,9 +80,23 @@ function Home() {
 
             <Grid item xs={3}>
 
-              <img src={"http://127.0.0.1:8000"+product.image} alt = "Product's Image" style={{maxWidth:200, maxHeight:200, width:'auto', height:'auto'}}></img>
-              <Link to={`/product/${product.pid}`}>{product.name}</Link>
-              <p>{product.price} ₺</p>
+            
+
+              <div class="Product-Single-Grid">
+
+              <Link className = "" to={`/product/${product.pid}`}>
+
+                <img src={"http://127.0.0.1:8000"+product.image} alt = "Product's Image" style={{maxWidth:200, maxHeight:200, width:'auto', height:'auto'}}></img>
+
+
+                <p>{product.name}</p>
+                <p>{product.price}₺</p>
+
+              </Link>
+
+              </div>
+
+
 
             </Grid>
 
@@ -102,9 +116,11 @@ function Home() {
 
             <Grid item xs={3} style={{alignItems: 'center', justifyContent: 'center'}}> 
 
-              <img src={"http://127.0.0.1:8000"+product.image} alt = "Product's Image" style={{maxWidth:200, maxHeight:200, width:'auto', height:'auto'}}></img>
-              <Link to={`/product/${product.pid}`}>{product.name}</Link>
-              <p>{product.price} ₺</p>
+              <div class="Product-Single-Grid">
+                <img src={"http://127.0.0.1:8000"+product.image} alt = "Product's Image" style={{maxWidth:200, maxHeight:200, width:'auto', height:'auto'}}></img>
+                <Link className = "productGridLink" to={`/product/${product.pid}`}>{product.name}</Link>
+                <p>{product.price} ₺</p>
+              </div>
 
             </Grid>
 

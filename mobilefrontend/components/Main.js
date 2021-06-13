@@ -5,6 +5,8 @@ import { Entypo } from '@expo/vector-icons';
 import Home from './main/Home'
 import AllProducts from './main/AllProducts'
 import Dashboard from './main/Dashboard'
+import CartStack from './main/CartStack';
+import Search from './main/Search';
 import Context from '../context/Context';
 import { FontAwesome } from '@expo/vector-icons'; 
 
@@ -22,6 +24,7 @@ export class Main extends Component {
     render() {
         return (       
             <Tab.Navigator initialRouteName="Home" labeled = {true} barStyle={{ backgroundColor: '#000' }}
+                
             >
                 <Tab.Screen name = "Home" component={Home} 
                     options={{
@@ -29,7 +32,7 @@ export class Main extends Component {
                         tabBarLabel: <Text style={{color: 'white'}}>Home</Text>
                     }}
                     
-                />  
+                />   
                 <Tab.Screen name = "Products" component={AllProducts}
                     options={{
                         tabBarIcon: ((color, size) =><Entypo name="shopping-bag" size={24} color="white" />),
@@ -37,23 +40,27 @@ export class Main extends Component {
                     }}
                     
                 />
-                <Tab.Screen name = "Search" component={EmptyScreen}
+                <Tab.Screen name = "Search" component={Search}
+                    initialParams= {{user:this.context.user}}
                     options={{
                         tabBarIcon: ((color, size) =><Entypo name="magnifying-glass" size={24} color="white" />),
-                        tabBarLabel: <Text style={{color: 'white'}}>Search</Text>
+                        tabBarLabel: <Text style={{color: 'white'}}>Search</Text>,
+                        
                     }}
                     
                 />
-                <Tab.Screen name = "Cart" component={EmptyScreen}
+                <Tab.Screen name = "CartStack" component={CartStack}
                     options={{
                         tabBarIcon: ({color, size}) => ( 
                             <Entypo name="shopping-cart" size={24} color="white" />
                         ),
-                        tabBarLabel: <Text style={{color: 'white'}}>Cart</Text>  
+                        tabBarLabel: <Text style={{color: 'white'}}>Cart</Text>  ,
+                        
                     }}
+                    navigation={this.props.navigation}
                     
                 />
-                <Tab.Screen name = "Dashboard" component={Dashboard}
+                <Tab.Screen name = "DashboardStack" component={Dashboard}
                     options={{
                         tabBarIcon: ({color, size}) => ( 
                             <FontAwesome name="user" size={24} color="white" />

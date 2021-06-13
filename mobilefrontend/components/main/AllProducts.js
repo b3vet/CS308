@@ -47,7 +47,8 @@ export default function AllProducts({navigation}) {
           name="SingleProductPage" 
           component={Product} 
           options={
-            ({ route }) => ({ title: route.params.name })
+            ({ route }) => ({ title: route.params.name }),
+            { headerShown: false }
           }  
         />
       </productsStack.Navigator>
